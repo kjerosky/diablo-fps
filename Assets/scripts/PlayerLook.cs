@@ -13,6 +13,8 @@ public class PlayerLook : MonoBehaviour {
     private const float RECOGNIZE_ENEMY_DISTANCE = 25.0f;
     private int enemiesLayerMask;
 
+    private GameObject targetEnemy;
+
     void Start() {
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -35,7 +37,13 @@ public class PlayerLook : MonoBehaviour {
     private void checkIfPointingAtEnemy() {
         RaycastHit hitInfo;
         if (Physics.Raycast(viewCamera.position, viewCamera.forward, out hitInfo, RECOGNIZE_ENEMY_DISTANCE, enemiesLayerMask)) {
-            Debug.Log(hitInfo.collider.name + " " + hitInfo.distance);
+            targetEnemy = hitInfo.collider.gameObject;
+        } else {
+            targetEnemy = null;
         }
+    }
+
+    public GameObject getTargetEnemy() {
+        return targetEnemy;
     }
 }
