@@ -10,8 +10,13 @@ public class PlayerLook : MonoBehaviour {
 
     private float xRotation = 0;
 
+    private const float RECOGNIZE_ENEMY_DISTANCE = 25.0f;
+    private int enemiesLayerMask;
+
     void Start() {
         Cursor.lockState = CursorLockMode.Locked;
+
+        enemiesLayerMask = LayerMask.GetMask("Enemies");
     }
     
     void Update() {
@@ -23,5 +28,14 @@ public class PlayerLook : MonoBehaviour {
 
         viewCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         transform.Rotate(Vector3.up * mouseX);
+
+        checkIfPointingAtEnemy();
+    }
+
+    private void checkIfPointingAtEnemy() {
+        RaycastHit hitInfo;
+        if (Physics.Raycast(viewCamera.position, viewCamera.forward, out hitInfo, RECOGNIZE_ENEMY_DISTANCE, enemiesLayerMask)) {
+            Debug.Log(hitInfo.collider.name + " " + hitInfo.distance);
+        }
     }
 }
