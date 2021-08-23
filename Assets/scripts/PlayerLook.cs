@@ -41,6 +41,11 @@ public class PlayerLook : MonoBehaviour {
         } else {
             targetEnemy = null;
         }
+
+        //TODO REMOVE THIS!!!
+        if (targetEnemy != null && Input.GetKeyDown(KeyCode.Space)) {
+            targetEnemy.GetComponent<Health>().takeDamage(10);
+        }
     }
 
     public GameObject getTargetEnemy() {
