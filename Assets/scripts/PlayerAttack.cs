@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour {
 
     void Update() {
         //TODO REMOVE THE KEYBOARD DEBUG HERE!!
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J)) && animator.GetCurrentAnimatorStateInfo(0).IsName("swordIdle")) {
+        if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.J)) && animator.GetCurrentAnimatorStateInfo(0).IsName("swordIdle")) {
             animator.SetTrigger("DoAttack");
         }
     }
