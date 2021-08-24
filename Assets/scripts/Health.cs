@@ -12,8 +12,12 @@ public class Health : MonoBehaviour {
         currentHealth = maxHealth;
     }
 
+    void OnTriggerEnter(Collider other) {
+        takeDamage(10);  //TODO SET THIS TO THE WEAPON'S DAMAGE!!
+    }
+
     public void takeDamage(int damageAmount) {
-        currentHealth = Mathf.Max(0, currentHealth - 10);
+        currentHealth = Mathf.Max(0, currentHealth - damageAmount);
     }
 
     public float getPercentage() {
