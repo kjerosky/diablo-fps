@@ -44,7 +44,7 @@ public class PlayerLook : MonoBehaviour {
 
         //TODO REMOVE THIS!!!
         if (targetEnemy != null && Input.GetKeyDown(KeyCode.Space)) {
-            targetEnemy.GetComponent<Health>().takeDamage(10);
+            targetEnemy.GetComponent<Health>().debugFullyHeal();
         }
     }
 

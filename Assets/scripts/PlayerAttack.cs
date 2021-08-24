@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour {
     public Animator animator;
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J)) {
             animator.SetTrigger("DoAttack");
         }
     }
