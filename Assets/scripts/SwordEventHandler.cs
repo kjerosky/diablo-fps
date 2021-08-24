@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class SwordEventHandler : MonoBehaviour {
 
-    private BoxCollider boxCollider;
+    public Collider swordCollider;
 
     void Start() {
-        boxCollider = GetComponent<BoxCollider>();
-        
-        boxCollider.enabled = false;
+        swordCollider.enabled = false;
     }
 
     public void ActivateWeapon() {
-        boxCollider.enabled = true;
+        swordCollider.enabled = true;
     }
 
     public void DeactivateWeapon() {
-        boxCollider.enabled = false;
+        swordCollider.enabled = false;
     }
 }
