@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwordEventHandler : MonoBehaviour {
 
     public Collider swordCollider;
+    public WeaponManager weaponManager;
 
     void Start() {
         swordCollider.enabled = false;
@@ -16,5 +17,9 @@ public class SwordEventHandler : MonoBehaviour {
 
     public void DeactivateWeapon() {
         swordCollider.enabled = false;
+    }
+
+    public void SignalSwordWasPutAway() {
+        weaponManager.switchToNextSelectedWeapon();
     }
 }

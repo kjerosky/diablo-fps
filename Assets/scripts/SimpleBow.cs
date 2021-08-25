@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleBow : MonoBehaviour {
+public class SimpleBow : Weapon {
 
+    public Animator animator;
     public GameObject arrowPrefab;
     public Transform arrowLaunchPoint;
     public float arrowInitialVelocity = 1;
@@ -20,5 +21,9 @@ public class SimpleBow : MonoBehaviour {
             Quaternion rotationTowardsVelocity = Quaternion.LookRotation(initialVelocity.normalized);
             newArrow.transform.rotation = rotationTowardsVelocity;
         }
+    }
+
+    public override void putAway() {
+        animator.SetTrigger("PutAway");
     }
 }

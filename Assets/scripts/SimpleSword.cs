@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleSword : MonoBehaviour {
+public class SimpleSword : Weapon {
 
     public Animator animator;
     public Collider swordCollisionVolume;
@@ -21,5 +21,9 @@ public class SimpleSword : MonoBehaviour {
         // if the player switches weapons before the disabling happens, then the sword
         // collision volume will stay enabled.  This stops that situation from happening.
         swordCollisionVolume.enabled = false;
+    }
+
+    public override void putAway() {
+        animator.SetTrigger("PutAway");
     }
 }

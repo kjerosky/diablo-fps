@@ -563,6 +563,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &761557813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761557811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211291014c66c41e283505dc66690471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponManager: {fileID: 1212986718}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fe201ced6724c4ff78e09d0c3a4949a3, type: 3}
       propertyPath: m_Name
-      value: super-simple-sword
+      value: Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe201ced6724c4ff78e09d0c3a4949a3, type: 3}
@@ -860,6 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordCollider: {fileID: 2127383654}
+  weaponManager: {fileID: 1212986718}
 --- !u!1 &1212986716
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,8 +922,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 499443724}
-  - {fileID: 1675388769}
+  - {fileID: 499443726}
+  - {fileID: 1675388771}
 --- !u!1 &1237436671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32037ede521a544d9b6913ffa89e5af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 761557812}
   arrowPrefab: {fileID: 6561431504268244027, guid: f9b645f276d6542a1b3d60601e018083, type: 3}
   arrowLaunchPoint: {fileID: 161294812}
   arrowInitialVelocity: 40
@@ -1487,7 +1502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6e622d3c65b4d4c0f92d0e42f0480c94, type: 3}
       propertyPath: m_Name
-      value: simple-bow
+      value: Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e622d3c65b4d4c0f92d0e42f0480c94, type: 3}
