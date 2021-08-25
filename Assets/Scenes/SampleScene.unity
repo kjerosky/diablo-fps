@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1160856071}
+  swordCollisionVolume: {fileID: 2127383654}
 --- !u!4 &508740586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6e622d3c65b4d4c0f92d0e42f0480c94, type: 3}

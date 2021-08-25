@@ -5,6 +5,7 @@ using UnityEngine;
 public class SimpleSword : MonoBehaviour {
 
     public Animator animator;
+    public Collider swordCollisionVolume;
 
     void Update() {
         //TODO REMOVE THE KEYBOARD DEBUG HERE!!
@@ -13,5 +14,12 @@ public class SimpleSword : MonoBehaviour {
         if (attackIsPressed && animator.GetCurrentAnimatorStateInfo(0).IsName("swordIdle")) {
             animator.SetTrigger("DoAttack");
         }
+    }
+
+    void OnDisable() {
+        // Since the sword collision volume is enabled/disabled using animation events,
+        // if the player switches weapons before the disabling happens, then the sword
+        // collision volume will stay enabled.  This stops that situation from happening.
+        swordCollisionVolume.enabled = false;
     }
 }
