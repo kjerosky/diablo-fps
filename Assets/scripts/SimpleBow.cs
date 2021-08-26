@@ -10,17 +10,20 @@ public class SimpleBow : Weapon {
     public float arrowInitialVelocity = 1;
 
     void Update() {
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J)) {
-            GameObject newArrow = Instantiate(arrowPrefab, arrowLaunchPoint.position, arrowLaunchPoint.rotation);
+        bool firePressed = Input.GetMouseButton(0) || Input.GetKey(KeyCode.J);
+        animator.SetBool("FirePressed", firePressed);
 
-            Vector3 initialVelocity = newArrow.transform.forward * arrowInitialVelocity;
+        // if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J)) {
+        //     GameObject newArrow = Instantiate(arrowPrefab, arrowLaunchPoint.position, arrowLaunchPoint.rotation);
 
-            Rigidbody rb = newArrow.GetComponent<Rigidbody>();
-            rb.AddForce(initialVelocity, ForceMode.VelocityChange);
+        //     Vector3 initialVelocity = newArrow.transform.forward * arrowInitialVelocity;
 
-            Quaternion rotationTowardsVelocity = Quaternion.LookRotation(initialVelocity.normalized);
-            newArrow.transform.rotation = rotationTowardsVelocity;
-        }
+        //     Rigidbody rb = newArrow.GetComponent<Rigidbody>();
+        //     rb.AddForce(initialVelocity, ForceMode.VelocityChange);
+
+        //     Quaternion rotationTowardsVelocity = Quaternion.LookRotation(initialVelocity.normalized);
+        //     newArrow.transform.rotation = rotationTowardsVelocity;
+        // }
     }
 
     public override void putAway() {
