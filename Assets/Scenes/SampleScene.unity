@@ -162,7 +162,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13622776}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -633,6 +633,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponManager: {fileID: 1212986718}
+  arrowPrefab: {fileID: 6561431504268244027, guid: f9b645f276d6542a1b3d60601e018083, type: 3}
+  arrowLaunchPoint: {fileID: 161294812}
+  arrowInitialVelocity: 40
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,9 +1410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 761557812}
-  arrowPrefab: {fileID: 6561431504268244027, guid: f9b645f276d6542a1b3d60601e018083, type: 3}
-  arrowLaunchPoint: {fileID: 161294812}
-  arrowInitialVelocity: 40
 --- !u!1 &1692650379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,6 +1627,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2670027801262418358, guid: 6e622d3c65b4d4c0f92d0e42f0480c94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1512316738315180758, guid: 6e622d3c65b4d4c0f92d0e42f0480c94, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1512316738315180758, guid: 6e622d3c65b4d4c0f92d0e42f0480c94, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1512316738315180758, guid: 6e622d3c65b4d4c0f92d0e42f0480c94, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6e622d3c65b4d4c0f92d0e42f0480c94, type: 3}
