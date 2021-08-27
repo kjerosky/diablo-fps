@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponManager : MonoBehaviour {
 
     public Weapon[] weapons;
 
+    private GameInputs gameInputs;
+    private bool previousWeaponWasPressed;
+    private bool nextWeaponWasPressed;
+
     private const int NO_INDEX_SELECTED = -1;
     private int currentWeaponIndex;
     private int nextWeaponIndex;
 
-    void Start() {
+    void Awake() {
+        gameInputs = new GameInputs();
+        gameInputs.Player.PreviousWeapon.started += context => handlePreviousWeaponPressed();
+        gameInputs.Player.NextWeapon.started += context => handleNextWeaponPressed();
+
         foreach(var weapon in weapons) {
             weapon.gameObject.SetActive(false);
         }
@@ -21,8 +30,24 @@ public class WeaponManager : MonoBehaviour {
         nextWeaponIndex = NO_INDEX_SELECTED;
     }
 
+    void OnEnable() {
+        gameInputs.Player.Enable();
+    }
+
+    void OnDisable() {
+        gameInputs.Player.Disable();
+    }
+
+    void handlePreviousWeaponPressed() {
+        previousWeaponWasPressed = true;
+    }
+
+    void handleNextWeaponPressed() {
+        nextWeaponWasPressed = true;
+    }
+
     void Update() {
-        if (Input.GetKeyDown(KeyCode.LeftBracket)) {
+        if (previousWeaponWasPressed) {
             if (nextWeaponIndex == NO_INDEX_SELECTED) {
                 weapons[currentWeaponIndex].putAway();
                 nextWeaponIndex = currentWeaponIndex;
@@ -32,7 +57,7 @@ public class WeaponManager : MonoBehaviour {
             if (nextWeaponIndex < 0) {
                 nextWeaponIndex = weapons.Length - 1;
             }
-        } else if (Input.GetKeyDown(KeyCode.RightBracket)) {
+        } else if (nextWeaponWasPressed) {
             if (nextWeaponIndex == NO_INDEX_SELECTED) {
                 weapons[currentWeaponIndex].putAway();
                 nextWeaponIndex = currentWeaponIndex;
@@ -43,6 +68,15 @@ public class WeaponManager : MonoBehaviour {
                 nextWeaponIndex = 0;
             }
         }
+    }
+
+    void LateUpdate() {
+        resetPressedButtonStatuses();
+    }
+
+    private void resetPressedButtonStatuses() {
+        previousWeaponWasPressed = false;
+        nextWeaponWasPressed = false;
     }
 
     public void switchToNextSelectedWeapon() {

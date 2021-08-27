@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerLook : MonoBehaviour {
 
     public Transform viewCamera;
     public float mouseSensitivity = 100f;
     public bool invertLook = true;
+
+    private GameInputs gameInputs;
+    private Vector2 currentLook;
 
     private float xRotation = 0;
 
@@ -15,21 +19,41 @@ public class PlayerLook : MonoBehaviour {
 
     private GameObject targetEnemy;
 
-    void Start() {
+    void Awake() {
+        gameInputs = new GameInputs();
+        gameInputs.Player.Look.started += handleLook;
+        gameInputs.Player.Look.performed += handleLook;
+        gameInputs.Player.Look.canceled += handleLook;
+
         Cursor.lockState = CursorLockMode.Locked;
 
         enemiesLayerMask = LayerMask.GetMask("Enemies");
     }
+
+    void OnEnable() {
+        gameInputs.Player.Enable();
+    }
+
+    void OnDisable() {
+        gameInputs.Player.Disable();
+    }
+
+    private void handleLook(InputAction.CallbackContext context) {
+        currentLook = context.ReadValue<Vector2>();
+        if (invertLook) {
+            currentLook.y *= -1;
+        }
+    }
     
     void Update() {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float horizontalLook = currentLook.x * mouseSensitivity * Time.deltaTime;
+        float verticalLook = currentLook.y * mouseSensitivity * Time.deltaTime;
 
-        xRotation -= mouseY * (invertLook ? -1 : 1);
+        xRotation -= verticalLook;
         xRotation = Mathf.Clamp(xRotation, -90, 90);
 
         viewCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        transform.Rotate(Vector3.up * mouseX);
+        transform.Rotate(Vector3.up * horizontalLook);
 
         checkIfPointingAtEnemy();
     }
@@ -40,11 +64,6 @@ public class PlayerLook : MonoBehaviour {
             targetEnemy = hitInfo.collider.gameObject;
         } else {
             targetEnemy = null;
-        }
-
-        //TODO REMOVE THIS!!!
-        if (targetEnemy != null && Input.GetKeyDown(KeyCode.Space)) {
-            targetEnemy.GetComponent<Health>().debugFullyHeal();
         }
     }
 

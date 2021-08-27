@@ -16,11 +16,6 @@ public class Health : MonoBehaviour {
         takeDamage(10);  //TODO SET THIS TO THE WEAPON'S DAMAGE!!
     }
 
-    //TODO REMOVE THIS!!
-    public void debugFullyHeal() {
-        currentHealth = maxHealth;
-    }
-
     public void takeDamage(int damageAmount) {
         currentHealth = Mathf.Max(0, currentHealth - damageAmount);
     }
