@@ -205,6 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3
   sprintSpeed: 8
+  dashSpeed: 100
+  dashSmoothingFactor: 10
 --- !u!1 &161294811
 GameObject:
   m_ObjectHideFlags: 0
