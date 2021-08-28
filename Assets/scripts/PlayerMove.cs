@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour {
     public float sprintSpeed = 8;
     public float dashSpeed = 100;
     public float dashSmoothingFactor = 10;
+    public AudioClip dashSound;
 
     private const float GRAVITY = -9.8f;
 
@@ -19,6 +20,7 @@ public class PlayerMove : MonoBehaviour {
     private const float DASHING_MAGNITUDE_THRESHOLD = 0.2f;
     private bool dashWasPressed;
     private Vector3 currentDash;
+    private AudioSource dashAudioSource;
 
     private CharacterController characterController;
     private Vector3 verticalVelocity;
@@ -34,6 +36,10 @@ public class PlayerMove : MonoBehaviour {
         gameInputs.Player.Dash.started += handleDash;
 
         characterController = GetComponent<CharacterController>();
+
+        dashAudioSource = gameObject.AddComponent<AudioSource>();
+        dashAudioSource.clip = dashSound;
+        dashAudioSource.playOnAwake = false;
     }
 
     void OnEnable() {
@@ -63,6 +69,7 @@ public class PlayerMove : MonoBehaviour {
             currentDash.magnitude < DASHING_MAGNITUDE_THRESHOLD;
         if (shouldStartDash) {
             currentDash = (transform.right * currentMovement.x + transform.forward * currentMovement.y) * dashSpeed;
+            dashAudioSource.Play();
         }
 
         Vector3 movement;

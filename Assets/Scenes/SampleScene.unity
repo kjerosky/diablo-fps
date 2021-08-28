@@ -207,6 +207,7 @@ MonoBehaviour:
   sprintSpeed: 8
   dashSpeed: 100
   dashSmoothingFactor: 10
+  dashSound: {fileID: 8300000, guid: e2c6ba35f92e542af89019a35cfc3698, type: 3}
 --- !u!1 &161294811
 GameObject:
   m_ObjectHideFlags: 0
