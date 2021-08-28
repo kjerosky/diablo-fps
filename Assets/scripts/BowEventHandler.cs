@@ -8,20 +8,20 @@ public class BowEventHandler : MonoBehaviour {
     public GameObject arrowPrefab;
     public Transform arrowLaunchPoint;
     public float arrowInitialVelocity = 40;
-    public AudioClip bowReadySound;
+    public AudioClip bowSwapSound;
     public AudioClip bowNockArrowSound;
     public AudioClip bowPullSound;
     public AudioClip bowReleaseSound;
 
-    private AudioSource bowReadyAudioSource;
+    private AudioSource bowSwapAudioSource;
     private AudioSource bowNockArrowAudioSource;
     private AudioSource bowPullAudioSource;
     private AudioSource bowReleaseAudioSource;
 
     void Awake() {
-        bowReadyAudioSource = gameObject.AddComponent<AudioSource>();
-        bowReadyAudioSource.clip = bowReadySound;
-        bowReadyAudioSource.playOnAwake = false;
+        bowSwapAudioSource = gameObject.AddComponent<AudioSource>();
+        bowSwapAudioSource.clip = bowSwapSound;
+        bowSwapAudioSource.playOnAwake = false;
         bowNockArrowAudioSource = gameObject.AddComponent<AudioSource>();
         bowNockArrowAudioSource.clip = bowNockArrowSound;
         bowNockArrowAudioSource.playOnAwake = false;
@@ -49,8 +49,10 @@ public class BowEventHandler : MonoBehaviour {
         newArrow.transform.rotation = rotationTowardsVelocity;
     }
 
-    public void playReadySound() {
-        bowReadyAudioSource.Play();
+    public void playSwapSound() {
+        float[] pitches = { 0.75f, 1.0f, 1.25f };
+        bowSwapAudioSource.pitch = pitches[Random.Range(0, pitches.Length)];
+        bowSwapAudioSource.Play();
     }
 
     public void playNockArrowSound() {

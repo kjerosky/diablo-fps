@@ -557,7 +557,7 @@ MonoBehaviour:
   arrowPrefab: {fileID: 6561431504268244027, guid: f9b645f276d6542a1b3d60601e018083, type: 3}
   arrowLaunchPoint: {fileID: 161294812}
   arrowInitialVelocity: 40
-  bowReadySound: {fileID: 8300000, guid: 8e4c9db380c794800948e71900f4d8e6, type: 3}
+  bowSwapSound: {fileID: 8300000, guid: 8e4c9db380c794800948e71900f4d8e6, type: 3}
   bowNockArrowSound: {fileID: 8300000, guid: 6717778a6935e4d818b0523cff75c181, type: 3}
   bowPullSound: {fileID: 8300000, guid: 04094a1bf17f54236a05cc4754c27942, type: 3}
   bowReleaseSound: {fileID: 8300000, guid: 095e2a67d537747248b3e7a42a2719f9, type: 3}
@@ -955,6 +955,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordCollider: {fileID: 2127383654}
   weaponManager: {fileID: 1212986718}
+  swordUnsheathSound: {fileID: 8300000, guid: f421c701e3a6b4811bf8ede604935d6e, type: 3}
+  swordSwingSound: {fileID: 8300000, guid: 86acb4d677ddc4670b5cc45ec1dd3492, type: 3}
+  swordSheathSound: {fileID: 8300000, guid: 6528d085320cc44bb8455240eebfd07a, type: 3}
 --- !u!1 &1212986716
 GameObject:
   m_ObjectHideFlags: 0
