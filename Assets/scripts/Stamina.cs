@@ -7,23 +7,24 @@ public class Stamina : MonoBehaviour {
     public float staminaRechargeRate = 25;
     public float sprintingStaminaDecreaseRate = 20;
     public float dashingStaminaDecreaseAmount = 50;
+    public float staminaRechargeDelaySeconds = 1;
 
     private const float MAX_STAMINA = 100;
     private const float EXHAUSTION_RECOVERY_THRESHOLD = 50;
 
     private float staminaRemaining;
     private bool isExhausted;
-    private bool staminaWasUsed;
+    private float staminaRechargeDelayLeft;
 
     void Awake() {
         staminaRemaining = MAX_STAMINA;
         isExhausted = false;
-        staminaWasUsed = false;
+        staminaRechargeDelayLeft = 0;
     }
 
     void LateUpdate() {
-        if (staminaWasUsed) {
-            staminaWasUsed = false;
+        if (staminaRechargeDelayLeft > 0) {
+            staminaRechargeDelayLeft -= Time.deltaTime;
             return;
         }
 
@@ -31,12 +32,10 @@ public class Stamina : MonoBehaviour {
         if (staminaRemaining >= EXHAUSTION_RECOVERY_THRESHOLD) {
             isExhausted = false;
         }
-
-        staminaWasUsed = false;
     }
 
     public void useStamina(StaminaType staminaType) {
-        if (!canUseStamina()) {
+        if (isExhausted) {
             return;
         }
 
@@ -49,7 +48,11 @@ public class Stamina : MonoBehaviour {
 
         staminaRemaining = Mathf.Max(0, staminaRemaining - staminaToUse);
         isExhausted = staminaRemaining == 0;
-        staminaWasUsed = true;
+
+        staminaRechargeDelayLeft = staminaRechargeDelaySeconds;
+        if (isExhausted) {
+            staminaRechargeDelayLeft = 0;
+        }
     }
 
     public bool canUseStamina() {

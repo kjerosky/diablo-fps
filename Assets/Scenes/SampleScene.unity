@@ -224,6 +224,7 @@ MonoBehaviour:
   staminaRechargeRate: 25
   sprintingStaminaDecreaseRate: 20
   dashingStaminaDecreaseAmount: 50
+  staminaRechargeDelaySeconds: 1
 --- !u!1 &161294811
 GameObject:
   m_ObjectHideFlags: 0
