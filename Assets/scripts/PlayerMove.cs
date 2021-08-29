@@ -25,6 +25,8 @@ public class PlayerMove : MonoBehaviour {
     private CharacterController characterController;
     private Vector3 verticalVelocity;
 
+    private Stamina stamina;
+
     void Awake() {
         gameInputs = new GameInputs();
         gameInputs.Player.Move.started += handleMove;
@@ -40,6 +42,8 @@ public class PlayerMove : MonoBehaviour {
         dashAudioSource = gameObject.AddComponent<AudioSource>();
         dashAudioSource.clip = dashSound;
         dashAudioSource.playOnAwake = false;
+
+        stamina = GetComponent<Stamina>();
     }
 
     void OnEnable() {
@@ -66,8 +70,10 @@ public class PlayerMove : MonoBehaviour {
         bool shouldStartDash =
             dashWasPressed &&
             currentMovement.magnitude != 0 &&
-            currentDash.magnitude < DASHING_MAGNITUDE_THRESHOLD;
+            currentDash.magnitude < DASHING_MAGNITUDE_THRESHOLD &&
+            stamina.canUseStamina();
         if (shouldStartDash) {
+            stamina.useStamina(StaminaType.DASHING);
             currentDash = (transform.right * currentMovement.x + transform.forward * currentMovement.y) * dashSpeed;
             dashAudioSource.Play();
         }
@@ -76,7 +82,13 @@ public class PlayerMove : MonoBehaviour {
         if (currentDash.magnitude >= DASHING_MAGNITUDE_THRESHOLD) {
             movement = calculateDashMovement();
         } else {
-            movement = calculateStandardMovement();
+            float movementSpeed = walkSpeed;
+            if (currentMovement != Vector2.zero && sprintIsPressed && stamina.canUseStamina()) {
+                stamina.useStamina(StaminaType.SPRINTING);
+                movementSpeed = sprintSpeed;
+            }
+
+            movement = calculateStandardMovement(movementSpeed);
         }
 
         characterController.Move(movement);
@@ -88,14 +100,9 @@ public class PlayerMove : MonoBehaviour {
         return currentDash * Time.deltaTime;
     }
 
-    private Vector3 calculateStandardMovement() {
+    private Vector3 calculateStandardMovement(float movementSpeed) {
         float strafeMove = currentMovement.x;
         float forwardMove = currentMovement.y;
-
-        float movementSpeed = walkSpeed;
-        if (sprintIsPressed) {
-            movementSpeed = sprintSpeed;
-        }
 
         strafeMove *= movementSpeed * Time.deltaTime;
         forwardMove *= movementSpeed * Time.deltaTime;

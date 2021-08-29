@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 157733023}
   - component: {fileID: 157733025}
   - component: {fileID: 157733026}
+  - component: {fileID: 157733027}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -208,6 +209,21 @@ MonoBehaviour:
   dashSpeed: 100
   dashSmoothingFactor: 10
   dashSound: {fileID: 8300000, guid: e2c6ba35f92e542af89019a35cfc3698, type: 3}
+--- !u!114 &157733027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157733022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad62fbebdf814f1fa6f066ff8914d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaRechargeRate: 25
+  sprintingStaminaDecreaseRate: 20
+  dashingStaminaDecreaseAmount: 50
 --- !u!1 &161294811
 GameObject:
   m_ObjectHideFlags: 0
