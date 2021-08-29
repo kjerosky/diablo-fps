@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Stamina : MonoBehaviour {
 
-    public float staminaRechargeRate = 25;
+    public float normalStaminaRechargeRate = 25;
+    public float exhaustedStaminaRechargeRate = 15;
     public float sprintingStaminaDecreaseRate = 20;
     public float dashingStaminaDecreaseAmount = 50;
     public float staminaRechargeDelaySeconds = 1;
@@ -28,6 +29,7 @@ public class Stamina : MonoBehaviour {
             return;
         }
 
+        float staminaRechargeRate = isExhausted ? exhaustedStaminaRechargeRate : normalStaminaRechargeRate;
         staminaRemaining = Mathf.Min(MAX_STAMINA, staminaRemaining + staminaRechargeRate * Time.deltaTime);
         if (staminaRemaining >= EXHAUSTION_RECOVERY_THRESHOLD) {
             isExhausted = false;
