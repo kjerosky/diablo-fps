@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SimpleArrow : MonoBehaviour {
 
+    public GameObject arrowImpactPrefab;
+
     private Rigidbody rb;
 
     private const float MAX_ARROW_LIFETIME = 10;
@@ -30,6 +32,8 @@ public class SimpleArrow : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
+        Instantiate(arrowImpactPrefab, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 }
