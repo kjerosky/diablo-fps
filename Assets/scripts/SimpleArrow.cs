@@ -6,8 +6,13 @@ public class SimpleArrow : MonoBehaviour {
 
     private Rigidbody rb;
 
+    private const float MAX_ARROW_LIFETIME = 10;
+    private float timeAlive;
+
     void Start() {
         rb = GetComponent<Rigidbody>();
+
+        timeAlive = 0;
     }
 
     void Update() {
@@ -17,5 +22,14 @@ public class SimpleArrow : MonoBehaviour {
             Quaternion rotationTowardsVelocity = Quaternion.LookRotation(rb.velocity.normalized);
             transform.rotation = rotationTowardsVelocity;
         }
+
+        timeAlive += Time.deltaTime;
+        if (timeAlive >= MAX_ARROW_LIFETIME) {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider other) {
+        Destroy(gameObject);
     }
 }
