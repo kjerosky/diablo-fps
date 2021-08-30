@@ -273,3 +273,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9901e4218fab49c2bda7e183259af72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightShader: {fileID: -6465566751694194690, guid: 114c7f241b24643b8966cae61c139d16, type: 3}
+  playerLook: {fileID: 0}

@@ -265,7 +265,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1120379113178342074, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
       propertyPath: maxHealth
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3667066469169911691, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
       propertyPath: m_Name
@@ -317,6 +317,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
+--- !u!1 &432430531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 200092580888339830, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
+  m_PrefabInstance: {fileID: 690247873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &499443724
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +593,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1120379113178342074, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
       propertyPath: maxHealth
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3667066469169911691, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
       propertyPath: m_Name
@@ -638,6 +643,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7628420606782468607, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 432430531}
+    - target: {fileID: 7628420606782468607, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
+      propertyPath: shader
+      value: 
+      objectReference: {fileID: -6465566751694194690, guid: 114c7f241b24643b8966cae61c139d16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
 --- !u!1 &705507993
