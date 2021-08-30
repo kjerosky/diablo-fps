@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3667066469169911691, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
       propertyPath: m_Name
-      value: Skeleton
+      value: SKELETON
       objectReference: {fileID: 0}
     - target: {fileID: 4854583970104624496, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
       propertyPath: m_RootOrder
@@ -597,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3667066469169911691, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
       propertyPath: m_Name
-      value: Demon
+      value: DEMON
       objectReference: {fileID: 0}
     - target: {fileID: 4854583970104624496, guid: 08d6cab8d336b43b49026536c732e268, type: 3}
       propertyPath: m_RootOrder

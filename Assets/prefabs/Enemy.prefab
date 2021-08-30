@@ -174,9 +174,9 @@ GameObject:
   - component: {fileID: 4854583970104624496}
   - component: {fileID: 8517429334633513510}
   - component: {fileID: 412328770915256516}
-  - component: {fileID: 1120379113178342074}
   - component: {fileID: 5825240396873127762}
-  - component: {fileID: 7628420606782468607}
+  - component: {fileID: 1120379113178342074}
+  - component: {fileID: 7237220505428314101}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -229,19 +229,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1120379113178342074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3667066469169911691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53b4a5ab02b624339938ec4c143a8aad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
 --- !u!95 &5825240396873127762
 Animator:
   serializedVersion: 3
@@ -261,7 +248,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7628420606782468607
+--- !u!114 &1120379113178342074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,8 +257,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3667066469169911691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9901e4218fab49c2bda7e183259af72, type: 3}
+  m_Script: {fileID: 11500000, guid: 53b4a5ab02b624339938ec4c143a8aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &7237220505428314101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3667066469169911691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3eeebbfdd4cb4444b7c3e121a85df24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   highlightShader: {fileID: -6465566751694194690, guid: 114c7f241b24643b8966cae61c139d16, type: 3}
-  playerLook: {fileID: 0}
+  brighteningShader: {fileID: -6465566751694194690, guid: de01cc01e407b468ea999d7941d907e9, type: 3}
