@@ -275,3 +275,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightShader: {fileID: -6465566751694194690, guid: 114c7f241b24643b8966cae61c139d16, type: 3}
   brighteningShader: {fileID: -6465566751694194690, guid: de01cc01e407b468ea999d7941d907e9, type: 3}
+  dissolveShader: {fileID: -6465566751694194690, guid: 9cd520dc6bc45406295cc87d7b6df40a, type: 3}

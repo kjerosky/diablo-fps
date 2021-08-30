@@ -6,6 +6,7 @@ public class EnemyStateManager : MonoBehaviour {
 
     public Shader highlightShader;
     public Shader brighteningShader;
+    public Shader dissolveShader;
 
     private Dictionary<Material, Shader> materialsToOriginalShader;
     private Dictionary<Material, Color> materialsToOriginalColor;

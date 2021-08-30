@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyFallingState : EnemyBaseState {
 
-    private const float TIME_TO_TRANSITION = 5;
+    private const float TIME_TO_TRANSITION = 3;
     private float timeLeftInThisState;
 
     public override void enterState(EnemyStateManager manager) {
