@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour {
     public float dashSmoothingFactor = 10;
     public AudioClip dashSound;
 
-    private const float GRAVITY = -9.8f;
+    private const float GRAVITY = -20;
 
     private GameInputs gameInputs;
     private Vector2 currentMovement;
