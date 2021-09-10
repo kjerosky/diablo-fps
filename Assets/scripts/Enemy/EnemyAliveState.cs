@@ -1,23 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAliveState : EnemyBaseState {
 
+    private GameObject player;
     private GameObject thisEnemy;
     private Health health;
     private Shader highlightShader;
     private PlayerLook playerLook;
+    private NavMeshAgent navMeshAgent;
 
     private Dictionary<Material, Shader> materialsToOriginalShader;
     private Dictionary<Material, Color> materialsToOriginalColor;
     private bool isHighlighted;
 
     public override void enterState(EnemyStateManager manager) {
+        player = GameObject.Find("Player");
         thisEnemy = manager.gameObject;
         health = manager.GetComponent<Health>();
         highlightShader = manager.highlightShader;
-        playerLook = GameObject.Find("Player").GetComponent<PlayerLook>();
+        playerLook = player.GetComponent<PlayerLook>();
+        navMeshAgent = manager.GetComponent<NavMeshAgent>();
 
         isHighlighted = false;
         materialsToOriginalShader = manager.getMaterialsToOriginalShaderDictionary();
@@ -34,8 +39,11 @@ public class EnemyAliveState : EnemyBaseState {
 
         if (health.getPercentage() == 0) {
             removeHighlight();
+            navMeshAgent.enabled = false;
             return EnemyStateTransition.TO_FALLING;
         }
+
+        navMeshAgent.SetDestination(player.transform.position);
 
         return EnemyStateTransition.NO_TRANSITION;
     }

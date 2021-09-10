@@ -32,6 +32,11 @@ public class SimpleArrow : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
+        //TODO HANDLE THIS WITH TAGS
+        if (other.name == "Player") {
+            return;
+        }
+
         Instantiate(arrowImpactPrefab, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
