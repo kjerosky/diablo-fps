@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAliveState : EnemyBaseState {
+public class EnemyPatrolWaitingState : EnemyBaseState {
 
     private GameObject player;
     private GameObject thisEnemy;
@@ -11,6 +11,12 @@ public class EnemyAliveState : EnemyBaseState {
     private Shader highlightShader;
     private PlayerLook playerLook;
     private NavMeshAgent navMeshAgent;
+
+    private Vector3 initialPosition;
+    private float patrolRadius;
+    private float playerRangeToStartAttacking;
+    private float timeLeftUntilMove;
+    private const float WAIT_TIME_UNTIL_NEXT_MOVE = 2;
 
     private Dictionary<Material, Shader> materialsToOriginalShader;
     private Dictionary<Material, Color> materialsToOriginalColor;
@@ -23,6 +29,11 @@ public class EnemyAliveState : EnemyBaseState {
         highlightShader = manager.highlightShader;
         playerLook = player.GetComponent<PlayerLook>();
         navMeshAgent = manager.GetComponent<NavMeshAgent>();
+
+        initialPosition = manager.initialPosition;
+        patrolRadius = manager.patrolRadius;
+        playerRangeToStartAttacking = manager.playerRangeToStartAttacking;
+        timeLeftUntilMove = WAIT_TIME_UNTIL_NEXT_MOVE;
 
         isHighlighted = false;
         materialsToOriginalShader = manager.getMaterialsToOriginalShaderDictionary();
@@ -43,7 +54,16 @@ public class EnemyAliveState : EnemyBaseState {
             return EnemyStateTransition.TO_FALLING;
         }
 
-        navMeshAgent.SetDestination(player.transform.position);
+        timeLeftUntilMove -= Time.deltaTime;
+        if (timeLeftUntilMove <= 0) {
+            Vector2 randomOffsetInPatrolRadius = Random.insideUnitCircle * patrolRadius;
+            Vector3 nextPosition = initialPosition + new Vector3(randomOffsetInPatrolRadius.x, 0, randomOffsetInPatrolRadius.y);
+            navMeshAgent.SetDestination(nextPosition);
+
+            return EnemyStateTransition.TO_PATROLLING;
+        } else if (Vector3.Distance(thisEnemy.transform.position, player.transform.position) <= playerRangeToStartAttacking) {
+            return EnemyStateTransition.TO_FOLLOWING_TARGET;
+        }
 
         return EnemyStateTransition.NO_TRANSITION;
     }

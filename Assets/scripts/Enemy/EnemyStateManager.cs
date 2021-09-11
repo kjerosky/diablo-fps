@@ -7,12 +7,15 @@ public class EnemyStateManager : MonoBehaviour {
     public Shader highlightShader;
     public Shader brighteningShader;
     public Shader dissolveShader;
+    public Vector3 initialPosition;
+    public float patrolRadius = 10;
+    public float playerRangeToStartAttacking = 5;
 
     private Dictionary<Material, Shader> materialsToOriginalShader;
     private Dictionary<Material, Color> materialsToOriginalColor;
 
     private EnemyBaseState currentState;
-    private const EnemyStateTransition INITIAL_TRANSITION = EnemyStateTransition.TO_ALIVE;
+    private const EnemyStateTransition INITIAL_TRANSITION = EnemyStateTransition.TO_PATROL_WAITING;
     private Dictionary<EnemyStateTransition, EnemyBaseState> transitionsToStateDictionary;
 
     void Start() {
@@ -25,9 +28,14 @@ public class EnemyStateManager : MonoBehaviour {
             }
         }
 
+        initialPosition = transform.position;
+
         transitionsToStateDictionary = new Dictionary<EnemyStateTransition, EnemyBaseState>();
         transitionsToStateDictionary.Add(EnemyStateTransition.NO_TRANSITION, null);
-        transitionsToStateDictionary.Add(EnemyStateTransition.TO_ALIVE, new EnemyAliveState());
+        transitionsToStateDictionary.Add(EnemyStateTransition.TO_PATROLLING, new EnemyPatrollingState());
+        transitionsToStateDictionary.Add(EnemyStateTransition.TO_PATROL_WAITING, new EnemyPatrolWaitingState());
+        transitionsToStateDictionary.Add(EnemyStateTransition.TO_FOLLOWING_TARGET, new EnemyFollowingTargetState());
+        transitionsToStateDictionary.Add(EnemyStateTransition.TO_ATTACKING_TARGET, new EnemyAttackingTargetState());
         transitionsToStateDictionary.Add(EnemyStateTransition.TO_FALLING, new EnemyFallingState());
         transitionsToStateDictionary.Add(EnemyStateTransition.TO_BRIGHTENING, new EnemyBrighteningState());
         transitionsToStateDictionary.Add(EnemyStateTransition.TO_DISSOLVING, new EnemyDissolvingState());
@@ -42,6 +50,11 @@ public class EnemyStateManager : MonoBehaviour {
         if (nextState != null) {
             transitionToState(nextState);
         }
+    }
+
+    void OnDrawGizmos() {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, playerRangeToStartAttacking);
     }
 
     private void transitionToState(EnemyBaseState nextState) {
@@ -60,7 +73,10 @@ public class EnemyStateManager : MonoBehaviour {
 
 public enum EnemyStateTransition {
     NO_TRANSITION,
-    TO_ALIVE,
+    TO_PATROLLING,
+    TO_PATROL_WAITING,
+    TO_FOLLOWING_TARGET,
+    TO_ATTACKING_TARGET,
     TO_FALLING,
     TO_BRIGHTENING,
     TO_DISSOLVING

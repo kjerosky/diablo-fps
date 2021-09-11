@@ -277,6 +277,9 @@ MonoBehaviour:
   highlightShader: {fileID: -6465566751694194690, guid: 114c7f241b24643b8966cae61c139d16, type: 3}
   brighteningShader: {fileID: -6465566751694194690, guid: de01cc01e407b468ea999d7941d907e9, type: 3}
   dissolveShader: {fileID: -6465566751694194690, guid: 9cd520dc6bc45406295cc87d7b6df40a, type: 3}
+  initialPosition: {x: 0, y: 0, z: 0}
+  patrolRadius: 10
+  playerRangeToStartAttacking: 5
 --- !u!195 &582829217133659056
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -287,11 +290,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
