@@ -56,10 +56,6 @@ public class EnemyPatrolWaitingState : EnemyBaseState {
 
         timeLeftUntilMove -= Time.deltaTime;
         if (timeLeftUntilMove <= 0) {
-            Vector2 randomOffsetInPatrolRadius = Random.insideUnitCircle * patrolRadius;
-            Vector3 nextPosition = initialPosition + new Vector3(randomOffsetInPatrolRadius.x, 0, randomOffsetInPatrolRadius.y);
-            navMeshAgent.SetDestination(nextPosition);
-
             return EnemyStateTransition.TO_PATROLLING;
         } else if (Vector3.Distance(thisEnemy.transform.position, player.transform.position) <= playerRangeToStartAttacking) {
             return EnemyStateTransition.TO_FOLLOWING_TARGET;

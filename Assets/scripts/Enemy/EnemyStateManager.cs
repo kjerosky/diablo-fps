@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyStateManager : MonoBehaviour {
 
@@ -68,6 +69,11 @@ public class EnemyStateManager : MonoBehaviour {
 
     public Dictionary<Material, Color> getMaterialsToOriginalColorDictionary() {
         return materialsToOriginalColor;
+    }
+
+    public void doneAttacking() {
+        currentState = transitionsToStateDictionary[EnemyStateTransition.TO_PATROLLING];
+        GetComponent<NavMeshAgent>().isStopped = false;
     }
 }
 

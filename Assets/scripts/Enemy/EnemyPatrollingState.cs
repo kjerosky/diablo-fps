@@ -14,7 +14,7 @@ public class EnemyPatrollingState : EnemyBaseState {
 
     private Vector3 initialPosition;
     private float patrolRadius;
-    private float playerRangeToStartAttacking;
+    private float playerRangeToStartFollowing;
 
     private Dictionary<Material, Shader> materialsToOriginalShader;
     private Dictionary<Material, Color> materialsToOriginalColor;
@@ -30,11 +30,16 @@ public class EnemyPatrollingState : EnemyBaseState {
 
         initialPosition = manager.initialPosition;
         patrolRadius = manager.patrolRadius;
-        playerRangeToStartAttacking = manager.playerRangeToStartAttacking;
+        playerRangeToStartFollowing = manager.playerRangeToStartAttacking;
 
         isHighlighted = false;
         materialsToOriginalShader = manager.getMaterialsToOriginalShaderDictionary();
         materialsToOriginalColor = manager.getMaterialsToOriginalColorDictionary();
+
+        Vector2 randomOffsetInPatrolRadius = Random.insideUnitCircle * patrolRadius;
+        Vector3 nextPosition = initialPosition + new Vector3(randomOffsetInPatrolRadius.x, 0, randomOffsetInPatrolRadius.y);
+        navMeshAgent.SetDestination(nextPosition);
+        navMeshAgent.isStopped = false;
     }
 
     public override EnemyStateTransition updateState() {
@@ -53,7 +58,7 @@ public class EnemyPatrollingState : EnemyBaseState {
 
         if (navMeshAgent.remainingDistance <= 0.1f) {
             return EnemyStateTransition.TO_PATROL_WAITING;
-        } else if (Vector3.Distance(thisEnemy.transform.position, player.transform.position) <= playerRangeToStartAttacking) {
+        } else if (Vector3.Distance(thisEnemy.transform.position, player.transform.position) <= playerRangeToStartFollowing) {
             return EnemyStateTransition.TO_FOLLOWING_TARGET;
         }
 
