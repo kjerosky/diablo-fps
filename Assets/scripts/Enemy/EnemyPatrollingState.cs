@@ -30,7 +30,7 @@ public class EnemyPatrollingState : EnemyBaseState {
 
         initialPosition = manager.initialPosition;
         patrolRadius = manager.patrolRadius;
-        playerRangeToStartFollowing = manager.playerRangeToStartAttacking;
+        playerRangeToStartFollowing = manager.playerRangeToStartFollowing;
 
         isHighlighted = false;
         materialsToOriginalShader = manager.getMaterialsToOriginalShaderDictionary();

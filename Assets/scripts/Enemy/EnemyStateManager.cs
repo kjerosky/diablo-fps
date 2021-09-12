@@ -10,7 +10,7 @@ public class EnemyStateManager : MonoBehaviour {
     public Shader dissolveShader;
     public Vector3 initialPosition;
     public float patrolRadius = 10;
-    public float playerRangeToStartAttacking = 5;
+    public float playerRangeToStartFollowing = 5;
 
     private Dictionary<Material, Shader> materialsToOriginalShader;
     private Dictionary<Material, Color> materialsToOriginalColor;
@@ -55,7 +55,7 @@ public class EnemyStateManager : MonoBehaviour {
 
     void OnDrawGizmos() {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, playerRangeToStartAttacking);
+        Gizmos.DrawWireSphere(transform.position, playerRangeToStartFollowing);
     }
 
     private void transitionToState(EnemyBaseState nextState) {
@@ -72,8 +72,12 @@ public class EnemyStateManager : MonoBehaviour {
     }
 
     public void doneAttacking() {
-        currentState = transitionsToStateDictionary[EnemyStateTransition.TO_PATROLLING];
-        GetComponent<NavMeshAgent>().isStopped = false;
+        if (currentState != transitionsToStateDictionary[EnemyStateTransition.TO_ATTACKING_TARGET]) {
+            return;
+        }
+
+        EnemyBaseState enemyFollowingTargetState = transitionsToStateDictionary[EnemyStateTransition.TO_FOLLOWING_TARGET];
+        transitionToState(enemyFollowingTargetState);
     }
 }
 

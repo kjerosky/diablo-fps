@@ -39,6 +39,7 @@ public class BowEventHandler : MonoBehaviour {
 
     public void FireArrow() {
         GameObject newArrow = Instantiate(arrowPrefab, arrowLaunchPoint.position, arrowLaunchPoint.rotation);
+        newArrow.tag = "PlayerWeapon";
 
         Vector3 initialVelocity = newArrow.transform.forward * arrowInitialVelocity;
 

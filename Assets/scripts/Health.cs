@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Health : MonoBehaviour {
 
-    public int maxHealth = 100;
+    public float maxHealth = 100;
 
-    private int currentHealth;
+    private float currentHealth;
 
     void Start() {
         currentHealth = maxHealth;
     }
 
     void OnTriggerEnter(Collider other) {
+        bool playerWeaponHitEnemy = tag == "Enemy" && other.tag == "PlayerWeapon";
+        bool enemyWeaponHitPlayer = tag == "Player" && other.tag == "EnemyWeapon";
+        if (!playerWeaponHitEnemy && !enemyWeaponHitPlayer) {
+            return;
+        }
+
         takeDamage(10);  //TODO SET THIS TO THE WEAPON'S DAMAGE!!
     }
 
@@ -21,6 +27,6 @@ public class Health : MonoBehaviour {
     }
 
     public float getPercentage() {
-        return (float)currentHealth / maxHealth;
+        return currentHealth / maxHealth;
     }
 }

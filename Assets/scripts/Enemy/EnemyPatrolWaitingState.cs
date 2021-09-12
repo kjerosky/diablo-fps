@@ -32,7 +32,7 @@ public class EnemyPatrolWaitingState : EnemyBaseState {
 
         initialPosition = manager.initialPosition;
         patrolRadius = manager.patrolRadius;
-        playerRangeToStartAttacking = manager.playerRangeToStartAttacking;
+        playerRangeToStartAttacking = manager.playerRangeToStartFollowing;
         timeLeftUntilMove = WAIT_TIME_UNTIL_NEXT_MOVE;
 
         isHighlighted = false;

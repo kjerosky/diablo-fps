@@ -12,7 +12,7 @@ public class EnemyFollowingTargetState : EnemyBaseState {
     private PlayerLook playerLook;
     private NavMeshAgent navMeshAgent;
 
-    private const float PLAYER_RANGE_TO_ATTACK = 3;
+    private const float PLAYER_RANGE_TO_ATTACK = 2.5f;
     private const float TIME_TO_DISENGAGE = 5;
     private float timeLeftToDisengage;
 

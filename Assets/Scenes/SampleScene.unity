@@ -184,9 +184,10 @@ GameObject:
   - component: {fileID: 157733025}
   - component: {fileID: 157733026}
   - component: {fileID: 157733027}
+  - component: {fileID: 157733028}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,6 +275,19 @@ MonoBehaviour:
   sprintingStaminaDecreaseRate: 10
   dashingStaminaDecreaseAmount: 50
   staminaRechargeDelaySeconds: 1
+--- !u!114 &157733028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157733022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b4a5ab02b624339938ec4c143a8aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &161294811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,7 +2973,7 @@ GameObject:
   - component: {fileID: 2127383654}
   m_Layer: 0
   m_Name: SwordCollisionVolume
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
