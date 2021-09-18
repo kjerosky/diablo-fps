@@ -13,6 +13,8 @@ public class EnemyFollowingTargetState : EnemyBaseState {
     private NavMeshAgent navMeshAgent;
 
     private const float PLAYER_RANGE_TO_ATTACK = 2.5f;
+    private const float MAX_ANGLE_TO_PLAYER_FOR_ATTACKING = 10;
+    private const float TURN_TOWARDS_PLAYER_RATE = 180;
     private const float TIME_TO_DISENGAGE = 5;
     private float timeLeftToDisengage;
 
@@ -50,12 +52,28 @@ public class EnemyFollowingTargetState : EnemyBaseState {
             return EnemyStateTransition.TO_FALLING;
         }
 
-        navMeshAgent.SetDestination(player.transform.position);
         timeLeftToDisengage -= Time.deltaTime;
         if (timeLeftToDisengage <= 0) {
             return EnemyStateTransition.TO_PATROLLING;
-        } else if (Vector3.Distance(thisEnemy.transform.position, player.transform.position) <= PLAYER_RANGE_TO_ATTACK) {
-            return EnemyStateTransition.TO_ATTACKING_TARGET;
+        }
+
+        if (Vector3.Distance(thisEnemy.transform.position, player.transform.position) > PLAYER_RANGE_TO_ATTACK) {
+            navMeshAgent.SetDestination(player.transform.position);
+        } else {
+            Vector3 myXZDirection = new Vector3(thisEnemy.transform.forward.x, 0, thisEnemy.transform.forward.z).normalized;
+            Vector3 toPlayerXZDirection = player.transform.position - thisEnemy.transform.position;
+            toPlayerXZDirection.y = 0;
+            toPlayerXZDirection = toPlayerXZDirection.normalized;
+            if (Vector3.Angle(myXZDirection, toPlayerXZDirection) > MAX_ANGLE_TO_PLAYER_FOR_ATTACKING) {
+                Quaternion incrementalTowardsPlayerRotation = Quaternion.RotateTowards(
+                    Quaternion.LookRotation(myXZDirection),
+                    Quaternion.LookRotation(toPlayerXZDirection),
+                    TURN_TOWARDS_PLAYER_RATE * Time.deltaTime
+                );
+                thisEnemy.transform.rotation = incrementalTowardsPlayerRotation;
+            } else {
+                return EnemyStateTransition.TO_ATTACKING_TARGET;
+            }
         }
 
         return EnemyStateTransition.NO_TRANSITION;
