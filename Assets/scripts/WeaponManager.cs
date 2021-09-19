@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class WeaponManager : MonoBehaviour {
 
     public Weapon[] weapons;
+    public PlayerLife playerLife;
 
     private GameInputs gameInputs;
     private bool previousWeaponWasPressed;
@@ -47,6 +48,11 @@ public class WeaponManager : MonoBehaviour {
     }
 
     void Update() {
+        if (playerLife.isPlayerDead()) {
+            weapons[currentWeaponIndex].gameObject.SetActive(false);
+            return;
+        }
+
         if (previousWeaponWasPressed) {
             if (nextWeaponIndex == NO_INDEX_SELECTED) {
                 weapons[currentWeaponIndex].putAway();

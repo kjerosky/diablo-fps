@@ -260,6 +260,8 @@ GameObject:
   - component: {fileID: 157733026}
   - component: {fileID: 157733027}
   - component: {fileID: 157733028}
+  - component: {fileID: 157733030}
+  - component: {fileID: 157733029}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -363,6 +365,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!95 &157733029
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157733022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c3aaf87906d824d57b8f56a96a6d2183, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &157733030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157733022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b926c6ddf30a145099a6e528291a499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &161294811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,6 +2246,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 499443726}
   - {fileID: 1675388771}
+  playerLife: {fileID: 157733030}
 --- !u!1 &1237436671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2567,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21254
+  m_Name: pb_Mesh21270
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

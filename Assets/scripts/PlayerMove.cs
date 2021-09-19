@@ -27,6 +27,8 @@ public class PlayerMove : MonoBehaviour {
 
     private Stamina stamina;
 
+    private PlayerLife playerLife;
+
     void Awake() {
         gameInputs = new GameInputs();
         gameInputs.Player.Move.started += handleMove;
@@ -44,6 +46,8 @@ public class PlayerMove : MonoBehaviour {
         dashAudioSource.playOnAwake = false;
 
         stamina = GetComponent<Stamina>();
+
+        playerLife = GetComponent<PlayerLife>();
     }
 
     void OnEnable() {
@@ -122,6 +126,10 @@ public class PlayerMove : MonoBehaviour {
     }
 
     void Update() {
+        if (playerLife.isPlayerDead()) {
+            return;
+        }
+
         handleMovement();
         handleGravity();
     }

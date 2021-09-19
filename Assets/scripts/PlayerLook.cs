@@ -18,6 +18,7 @@ public class PlayerLook : MonoBehaviour {
     private int enemiesLayerMask;
 
     private GameObject targetEnemy;
+    private PlayerLife playerLife;
 
     void Awake() {
         gameInputs = new GameInputs();
@@ -28,6 +29,8 @@ public class PlayerLook : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
 
         enemiesLayerMask = LayerMask.GetMask("Enemies");
+
+        playerLife = GetComponent<PlayerLife>();
     }
 
     void OnEnable() {
@@ -46,6 +49,10 @@ public class PlayerLook : MonoBehaviour {
     }
     
     void Update() {
+        if (playerLife.isPlayerDead()) {
+            return;
+        }
+
         float horizontalLook = currentLook.x * mouseSensitivity * Time.deltaTime;
         float verticalLook = currentLook.y * mouseSensitivity * Time.deltaTime;
 
