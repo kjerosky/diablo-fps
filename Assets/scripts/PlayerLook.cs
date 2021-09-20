@@ -12,7 +12,7 @@ public class PlayerLook : MonoBehaviour {
     private GameInputs gameInputs;
     private Vector2 currentLook;
 
-    private float xRotation = 0;
+    private float xRotation;
 
     private const float RECOGNIZE_ENEMY_DISTANCE = 25.0f;
     private int enemiesLayerMask;
@@ -31,6 +31,8 @@ public class PlayerLook : MonoBehaviour {
         enemiesLayerMask = LayerMask.GetMask("Enemies");
 
         playerLife = GetComponent<PlayerLife>();
+
+        respawn();
     }
 
     void OnEnable() {
@@ -47,8 +49,10 @@ public class PlayerLook : MonoBehaviour {
             currentLook.y *= -1;
         }
     }
-    
-    void Update() {
+
+    // If we have animations on the camera, then we have to move this camera movement code to LateUpdate.
+    // https://answers.unity.com/questions/530607/i-cant-look-up-and-down-because-of-animation-on-ca.html
+    void LateUpdate() {
         if (playerLife.isPlayerDead()) {
             return;
         }
@@ -76,5 +80,9 @@ public class PlayerLook : MonoBehaviour {
 
     public GameObject getTargetEnemy() {
         return targetEnemy;
+    }
+
+    public void respawn() {
+        xRotation = 0f;
     }
 }

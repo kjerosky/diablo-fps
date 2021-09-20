@@ -9,6 +9,10 @@ public class Health : MonoBehaviour {
     private float currentHealth;
 
     void Start() {
+        respawn();
+    }
+
+    public void respawn() {
         currentHealth = maxHealth;
     }
 

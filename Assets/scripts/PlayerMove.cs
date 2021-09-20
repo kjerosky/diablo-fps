@@ -48,6 +48,13 @@ public class PlayerMove : MonoBehaviour {
         stamina = GetComponent<Stamina>();
 
         playerLife = GetComponent<PlayerLife>();
+
+        characterController.enabled = false;
+        GameObject respawnPoint = GameObject.Find("RespawnPoint");
+        transform.position = respawnPoint.transform.position;
+        transform.rotation = respawnPoint.transform.rotation;
+        characterController.enabled = true;
+
     }
 
     void OnEnable() {

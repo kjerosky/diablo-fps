@@ -92,4 +92,8 @@ public class WeaponManager : MonoBehaviour {
         currentWeaponIndex = nextWeaponIndex;
         nextWeaponIndex = NO_INDEX_SELECTED;
     }
+
+    public void respawn() {
+        weapons[currentWeaponIndex].gameObject.SetActive(true);
+    }
 }
