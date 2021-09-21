@@ -52,6 +52,10 @@ public class EnemyFollowingTargetState : EnemyBaseState {
             return EnemyStateTransition.TO_FALLING;
         }
 
+        if (player.GetComponent<PlayerLife>().isPlayerDead()) {
+            return EnemyStateTransition.TO_PATROLLING;
+        }
+
         timeLeftToDisengage -= Time.deltaTime;
         if (timeLeftToDisengage <= 0) {
             return EnemyStateTransition.TO_PATROLLING;
