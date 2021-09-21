@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerLife : MonoBehaviour {
 
     public Animator transitionAnimator;
+    public AudioClip deathSound;
 
     private Health health;
     private Animator animator;
     private CharacterController characterController;
+    private AudioSource deathAudioSource;
 
     private bool isDead;
 
@@ -16,6 +18,10 @@ public class PlayerLife : MonoBehaviour {
         health = GetComponent<Health>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+
+        deathAudioSource = gameObject.AddComponent<AudioSource>();
+        deathAudioSource.clip = deathSound;
+        deathAudioSource.playOnAwake = false;
 
         isDead = false;
     }
@@ -25,12 +31,13 @@ public class PlayerLife : MonoBehaviour {
     }
 
     void Update() {
-        if (health.getPercentage() > 0f) {
+        if (isDead || health.getPercentage() > 0f) {
             return;
         }
 
         isDead = true;
         animator.SetTrigger("die");
+        deathAudioSource.Play();
     }
 
     public void finishedDying() {
